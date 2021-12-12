@@ -14,8 +14,7 @@ public class ChangeText : MonoBehaviour
     
     private List<Caterpillar> caterpillar = new List<Caterpillar>();
     private int count = 0; 
-
-
+    
     public void Start()
     {
         // Quelle: https://de.wikipedia.org/wiki/Raupe_(Schmetterling)
@@ -33,15 +32,13 @@ public class ChangeText : MonoBehaviour
 
     public void ChangeBox()
     {
-        if (count < caterpillar.Count)
+        if (count < caterpillar.Count-1)
         {
+            count += 1;
             String titleText = caterpillar[count].getTitle();
             String descText = caterpillar[count].getDesc();
-                
             title.text = titleText;
             desc.text = descText;
-            
-            count += 1;
         }
         else
         {
