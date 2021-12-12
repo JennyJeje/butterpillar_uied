@@ -37,7 +37,7 @@ public class ChangeText : MonoBehaviour
         count = 0;
         title.text = caterpillar[count].getTitle();
         desc.text = caterpillar[count].getDesc();
-        btnName.text = "Info AN";
+        btnName.text = "Info ausblenden";
     }
     
     public void SwitchBoxStatus()
@@ -46,13 +46,13 @@ public class ChangeText : MonoBehaviour
         {
             dialogBox.SetActive(false);
             isDialogBoxActive = false;
-            btnName.text = "Info AUS";
+            btnName.text = "Info einblenden";
         } 
         else
         {
             dialogBox.SetActive(true);
             isDialogBoxActive = true;
-            btnName.text = "Info AN";
+            btnName.text = "Info ausblenden";
         }
     }
 
