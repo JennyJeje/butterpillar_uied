@@ -10,7 +10,8 @@ public class ChangeText : MonoBehaviour
 {
     public TMP_Text title;
     public TMP_Text desc;
-
+    public GameObject dialogBox;
+    
     private List<Caterpillar> caterpillar = new List<Caterpillar>();
     private int count = 0; 
 
@@ -31,13 +32,22 @@ public class ChangeText : MonoBehaviour
     }
 
     public void ChangeBox()
-    { 
-        count += 1;
-        String titleText = caterpillar[count].getTitle();
-        String descText = caterpillar[count].getDesc();
+    {
+        if (count < caterpillar.Count)
+        {
+            String titleText = caterpillar[count].getTitle();
+            String descText = caterpillar[count].getDesc();
                 
-        title.text = titleText;
-        desc.text = descText;
+            title.text = titleText;
+            desc.text = descText;
+            
+            count += 1;
+        }
+        else
+        {
+            dialogBox.SetActive(false);
+        }
+
     } 
 }
 
