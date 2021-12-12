@@ -15,6 +15,8 @@ public class SwitchCamera : MonoBehaviour
     {
         CameraSwitcher.Register(otherCam);
         CameraSwitcher.Register(dollyCam);
+        CameraSwitcher.RegisterTwo(zoomCam);
+
         CameraSwitcher.SwitchCamera(otherCam);
     }
     
@@ -40,11 +42,9 @@ public class SwitchCamera : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            CameraSwitcher.Unregister(otherCam);
-            CameraSwitcher.Unregister(dollyCam);
-
-            CameraSwitcher.RegisterTwo(zoomCam);
-            zoomCam.Priority = 10;
+            otherCam.Priority = 0;
+            dollyCam.Priority = 0;
+            zoomCam.Priority = 9;
         }
         
     }

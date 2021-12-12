@@ -5,18 +5,26 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using Button = UnityEngine.UI.Button;
 
 public class ChangeText : MonoBehaviour
 {
     public TMP_Text title;
     public TMP_Text desc;
     public GameObject dialogBox;
+    public bool isDialogBoxActive = true;
+    public Button btn;
+    public TMP_Text btnName;
     
     private List<Caterpillar> caterpillar = new List<Caterpillar>();
-    private int count = 0; 
+    private int count;
     
+
     public void Start()
     {
+        btn = btn.GetComponent<Button>();
+        btnName = btnName.GetComponent<TMP_Text>();
+
         // Quelle: https://de.wikipedia.org/wiki/Raupe_(Schmetterling)
         caterpillar.Add(new Caterpillar("Merkmale der Raupe", "Die Raupen der Schmetterlinge bestehen, ähnlich wie bei anderen Insekten mit vollständiger Metamorphose, aus gleichmäßig aneinandergereihten Segmenten, die den Körper bilden."));
         caterpillar.Add(new Caterpillar("Merkmale der Raupe", "Schmetterlingsraupen haben (hinter dem Kopf) 14 Segmente, von denen meistens die letzten drei zu einem Analsegment verwachsen sind. Wie die Falter lassen sich auch die Raupen in die drei Bereiche Kopf, Brust und Hinterleib unterteilen."));
@@ -26,23 +34,42 @@ public class ChangeText : MonoBehaviour
         caterpillar.Add(new Caterpillar("Das Abdomen oder das Hinterleib", "Die darauf folgenden 11 Segmente bilden das Abdomen, das aber nicht deutlich vom vorderen Teil des Körpers getrennt ist. Jedes dieser Segmente trägt ein Stigma für die Atmung. Einige dieser Segmente, meistens das sechste bis neunte, tragen Gliedmaßen, die aber keine eigentlichen Beine sind, sie tragen am Ende Hakenkränze zum besseren Festklammern."));
         caterpillar.Add(new Caterpillar("Die Bauchbeine", "Diese sogenannten Bauchbeine (oder Bauchfüße) sind in ihrer Gestalt im Gegensatz zu den echten Beinen ungegliedert, nicht sklerotisiert (verhärtet) und am Ende meist saugnapfartig verbreitert. Das vierte und fünfte Segment der Hinterleibs ist im Unterschied zu den sehr ähnlichen Larven der Blattwespen beinlos, diese besitzen lediglich ein beinfreies Segment."));
         
+        count = 0;
         title.text = caterpillar[count].getTitle();
         desc.text = caterpillar[count].getDesc();
+        btnName.text = "Info AN";
+    }
+    
+    public void SwitchBoxStatus()
+    {
+        if (isDialogBoxActive)
+        {
+            dialogBox.SetActive(false);
+            isDialogBoxActive = false;
+            btnName.text = "Info AUS";
+        } 
+        else
+        {
+            dialogBox.SetActive(true);
+            isDialogBoxActive = true;
+            btnName.text = "Info AN";
+        }
     }
 
-    public void ChangeBox()
+    public void ChangeBoxText()
     {
         if (count < caterpillar.Count-1)
         {
             count += 1;
-            String titleText = caterpillar[count].getTitle();
-            String descText = caterpillar[count].getDesc();
-            title.text = titleText;
-            desc.text = descText;
+            title.text = caterpillar[count].getTitle();
+            desc.text = caterpillar[count].getDesc();
         }
         else
         {
-            dialogBox.SetActive(false);
+            count = 0;
+            title.text = caterpillar[count].getTitle();
+            desc.text = caterpillar[count].getDesc();
+            //dialogBox.SetActive(false);
         }
 
     } 
