@@ -18,7 +18,6 @@ public class ChangeText : MonoBehaviour
     
     private List<Caterpillar> caterpillar = new List<Caterpillar>();
     private int count;
-    
 
     public void Start()
     {
@@ -39,7 +38,7 @@ public class ChangeText : MonoBehaviour
         desc.text = caterpillar[count].getDesc();
         btnName.text = "Info ausblenden";
     }
-    
+
     public void SwitchBoxStatus()
     {
         if (isDialogBoxActive)
@@ -71,7 +70,6 @@ public class ChangeText : MonoBehaviour
             desc.text = caterpillar[count].getDesc();
             //dialogBox.SetActive(false);
         }
-
     } 
 }
 
