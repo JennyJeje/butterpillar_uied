@@ -9,8 +9,11 @@ using UnityEngine.UI;
 public class WorldCameraController : MonoBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera cam;
-    [SerializeField] private float speed = 0.05f;
+    [SerializeField] private CinemachineVirtualCamera cam2;
+    //[SerializeField] private float speed = 0.05f;
 
+    private bool isCam, isCam2;
+    
     CinemachineTrackedDolly trackedDolly;
     private float position;
     private float pathLength;
@@ -20,20 +23,21 @@ public class WorldCameraController : MonoBehaviour
     private float horizontal;
     private double checkTriggerPosition;
     
-    public GameObject WorldText1;
-    public GameObject WorldText2;
-    public GameObject WorldText3;
+    public GameObject WorldText1, WorldText2, WorldText3, WorldText4, WorldText5, WorldText6, WorldText7;
 
     private void Start()
     {
         trackedDolly = cam.GetCinemachineComponent<CinemachineTrackedDolly>();
+
         pathLength = trackedDolly.m_Path.PathLength;
         maxPos = trackedDolly.m_Path.MaxPos;
 
-        trackedDolly.m_PathPosition = 0; // Start of camera
+        trackedDolly.m_PathPosition = 0;
+        isCam = true; 
+        isCam2 = false;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         // Dolly Cam Movement
         horizontal = Input.GetAxisRaw("Horizontal");
@@ -49,43 +53,75 @@ public class WorldCameraController : MonoBehaviour
         position = Mathf.Clamp(position, minPos, maxPos);
 
         // Check position
-        if (checkTriggerPosition == 0f)
+        if (isCam)
         {
-            WorldText1.SetActive(true);
-            WorldText2.SetActive(false);
-            Debug.Log("Track + "  + checkTriggerPosition);
-        } else if (checkTriggerPosition == 2f)
-        {
-            WorldText1.SetActive(false);
-            WorldText2.SetActive(true);
-            WorldText3.SetActive(false);
-            Debug.Log("Track + "  + checkTriggerPosition);
-        } else if (checkTriggerPosition == 4f)
-        {
-            WorldText2.SetActive(false);
-            WorldText3.SetActive(true);
-            Debug.Log("Track + "  + checkTriggerPosition);
+            if (checkTriggerPosition == 0f)
+            {
+                WorldText1.SetActive(true);
+                WorldText2.SetActive(false);
+                Debug.Log("Track + "  + checkTriggerPosition);
+            } else if (checkTriggerPosition == 1f)
+            {
+                WorldText1.SetActive(false);
+                WorldText2.SetActive(true);
+                WorldText3.SetActive(false);
+                Debug.Log("Track + "  + checkTriggerPosition);
+            } else if (checkTriggerPosition == 3f)
+            {
+                WorldText2.SetActive(false);
+                WorldText3.SetActive(true);
+                WorldText4.SetActive(false);
+                Debug.Log("Track + "  + checkTriggerPosition);
+            } else if (checkTriggerPosition == 5f)
+            {
+                WorldText3.SetActive(false);
+                WorldText4.SetActive(true);
+                Debug.Log("Track + " + checkTriggerPosition);
+            } 
         }
 
-        /*
-        if (position > trackedDolly.m_Path.MinPos && (Input.mouseScrollDelta.y == -1 || Input.GetKeyDown(KeyCode.DownArrow)) )
+        if (isCam2)
         {
-            position -= horizontal * speed * Time.deltaTime;
-            trackedDolly.m_PathPosition = position;
-
-            Debug.Log("DownArrowKey detected." + position);
-        }
-        else if (position < trackedDolly.m_Path.MaxPos && (Input.mouseScrollDelta.y == +1 || Input.GetKeyDown(KeyCode.UpArrow)))
-        {
-            position += horizontal * speed * Time.deltaTime;
-            trackedDolly.m_PathPosition = position;
-
-            Debug.Log("UpArrowKey detected." + position);
+            if (checkTriggerPosition == 0f)
+            {
+                WorldText5.SetActive(true);
+                WorldText6.SetActive(false);
+                Debug.Log("Track + "  + checkTriggerPosition);
+            }
+            else if (checkTriggerPosition == 3f)
+            {
+                WorldText5.SetActive(false);
+                WorldText6.SetActive(true);
+                WorldText7.SetActive(false);
+                Debug.Log("Track + "  + checkTriggerPosition);
+            }
+            else if (checkTriggerPosition == 5f)
+            {
+                WorldText6.SetActive(false);
+                WorldText7.SetActive(true);
+                Debug.Log("Track + "  + checkTriggerPosition);
+            }
         }
         
-        */
-
     }
+    public void DeleteText()
+    {
+        WorldText4.SetActive(false);
+    }
+
+    public void ChangeToCam2()
+    {
+        isCam = false;
+        isCam2 = true; 
+        
+        trackedDolly = cam2.GetCinemachineComponent<CinemachineTrackedDolly>();
+
+        pathLength = trackedDolly.m_Path.PathLength;
+        maxPos = trackedDolly.m_Path.MaxPos;
+
+        trackedDolly.m_PathPosition = 0;
+    }
+
 }
 
 

@@ -7,53 +7,76 @@ using UnityEngine.Serialization;
 
 public class SwitchCamera : MonoBehaviour
 {
-    [SerializeField] private CinemachineVirtualCamera otherCam;
     [SerializeField] private CinemachineVirtualCamera dollyCam;
+    [SerializeField] private CinemachineVirtualCamera dollyCam2;
     [SerializeField] private CinemachineFreeLook zoomCam;
 
     public GameObject butterpillarCanvas; 
     private void OnEnable()
     {
-        CameraSwitcher.Register(otherCam);
+        CameraSwitcher.Register(dollyCam2);
         CameraSwitcher.Register(dollyCam);
         CameraSwitcher.RegisterTwo(zoomCam);
 
-        CameraSwitcher.SwitchCamera(otherCam);
+        CameraSwitcher.SwitchCamera(dollyCam);
     }
     
     private void OnDisable()
     {
-        CameraSwitcher.Unregister(otherCam);
+        CameraSwitcher.Unregister(dollyCam2);
         CameraSwitcher.Unregister(dollyCam);
     }
 
     private void Update()
     {
+        
+        /*
         if (Input.GetKeyDown(KeyCode.S))
         {
             butterpillarCanvas.SetActive(false);
 
-            if (CameraSwitcher.isActiveCamera(otherCam))
+            if (CameraSwitcher.isActiveCamera(dollyCam2))
             {
                 CameraSwitcher.SwitchCamera(dollyCam);
             } 
             else if (CameraSwitcher.isActiveCamera(dollyCam))
             {
-                CameraSwitcher.SwitchCamera(otherCam);
+                CameraSwitcher.SwitchCamera(dollyCam2);
             }
         }
         
+        // For testing
         if (Input.GetKeyDown(KeyCode.Z))
         {
             butterpillarCanvas.SetActive(true);
 
-            otherCam.Priority = 0;
+            dollyCam2.Priority = 0;
             dollyCam.Priority = 0;
             zoomCam.Priority = 9;
         }
-        
+        */
+    }
+    
+    public void SwitchToZoom()
+    {
+        butterpillarCanvas.SetActive(true);
+
+        dollyCam2.Priority = 0;
+        dollyCam.Priority = 0;
+        zoomCam.Priority = 9;
+    }
+
+    public void SwitchToCam2()
+    {
+        if (CameraSwitcher.isActiveCamera(dollyCam))
+        {
+            butterpillarCanvas.SetActive(false);
+            CameraSwitcher.SwitchCamera(dollyCam2);
+        }
     }
 }
+
+
 
 public static class CameraSwitcher
 {
