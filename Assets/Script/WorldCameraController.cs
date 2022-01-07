@@ -33,10 +33,12 @@ public class WorldCameraController : MonoBehaviour
 
     private void Update()
     {
+        // Dolly Cam Movement
         horizontal = Input.GetAxisRaw("Horizontal");
         position = trackedDolly.m_PathPosition;
         position += horizontal * speed * Time.deltaTime;
         
+        // Get position
         string posToString = position.ToString("R");
         double posToDouble = Double.Parse(posToString);
         checkTriggerPosition = Math.Round(posToDouble);
@@ -44,6 +46,7 @@ public class WorldCameraController : MonoBehaviour
         trackedDolly.m_PathPosition = position;
         position = Mathf.Clamp(position, minPos, maxPos);
 
+        // Check position
         if (checkTriggerPosition == 2f)
         {
             WorldText1.SetActive(true);
@@ -53,9 +56,7 @@ public class WorldCameraController : MonoBehaviour
             WorldText1.SetActive(false);
             Debug.Log("Track 3 + " + checkTriggerPosition);
         }
-        
-        
-        
+
         /*
         if (position > trackedDolly.m_Path.MinPos && (Input.mouseScrollDelta.y == -1 || Input.GetKeyDown(KeyCode.DownArrow)) )
         {
