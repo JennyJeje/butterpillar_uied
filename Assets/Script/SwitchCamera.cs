@@ -11,6 +11,7 @@ public class SwitchCamera : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera dollyCam;
     [SerializeField] private CinemachineFreeLook zoomCam;
 
+    public GameObject butterpillarCanvas; 
     private void OnEnable()
     {
         CameraSwitcher.Register(otherCam);
@@ -30,6 +31,8 @@ public class SwitchCamera : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.S))
         {
+            butterpillarCanvas.SetActive(false);
+
             if (CameraSwitcher.isActiveCamera(otherCam))
             {
                 CameraSwitcher.SwitchCamera(dollyCam);
@@ -42,6 +45,8 @@ public class SwitchCamera : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Z))
         {
+            butterpillarCanvas.SetActive(true);
+
             otherCam.Priority = 0;
             dollyCam.Priority = 0;
             zoomCam.Priority = 9;

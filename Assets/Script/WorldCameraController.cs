@@ -20,13 +20,15 @@ public class WorldCameraController : MonoBehaviour
     private float horizontal;
     private double checkTriggerPosition;
 
-    public GameObject GameObject; 
+    public GameObject WorldText1;
 
     private void Start()
     {
         trackedDolly = cam.GetCinemachineComponent<CinemachineTrackedDolly>();
         pathLength = trackedDolly.m_Path.PathLength;
         maxPos = trackedDolly.m_Path.MaxPos;
+
+        trackedDolly.m_PathPosition = 0; // Start of camera
     }
 
     private void Update()
@@ -42,15 +44,16 @@ public class WorldCameraController : MonoBehaviour
         trackedDolly.m_PathPosition = position;
         position = Mathf.Clamp(position, minPos, maxPos);
 
-        if (checkTriggerPosition == 1f)
+        if (checkTriggerPosition == 2f)
         {
-            GameObject.SetActive(false);
+            WorldText1.SetActive(true);
             Debug.Log("Track 1 + "  + checkTriggerPosition);
-        } else if (checkTriggerPosition == 3f)
+        } else if (checkTriggerPosition == 4f)
         {
-            GameObject.SetActive(true);
+            WorldText1.SetActive(false);
             Debug.Log("Track 3 + " + checkTriggerPosition);
         }
+        
         
         
         /*
