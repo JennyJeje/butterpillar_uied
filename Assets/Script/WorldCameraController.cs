@@ -19,8 +19,10 @@ public class WorldCameraController : MonoBehaviour
 
     private float horizontal;
     private double checkTriggerPosition;
-
+    
     public GameObject WorldText1;
+    public GameObject WorldText2;
+    public GameObject WorldText3;
 
     private void Start()
     {
@@ -47,14 +49,22 @@ public class WorldCameraController : MonoBehaviour
         position = Mathf.Clamp(position, minPos, maxPos);
 
         // Check position
-        if (checkTriggerPosition == 2f)
+        if (checkTriggerPosition == 0f)
         {
             WorldText1.SetActive(true);
-            Debug.Log("Track 1 + "  + checkTriggerPosition);
-        } else if (checkTriggerPosition == 4f)
+            WorldText2.SetActive(false);
+            Debug.Log("Track + "  + checkTriggerPosition);
+        } else if (checkTriggerPosition == 2f)
         {
             WorldText1.SetActive(false);
-            Debug.Log("Track 3 + " + checkTriggerPosition);
+            WorldText2.SetActive(true);
+            WorldText3.SetActive(false);
+            Debug.Log("Track + "  + checkTriggerPosition);
+        } else if (checkTriggerPosition == 4f)
+        {
+            WorldText2.SetActive(false);
+            WorldText3.SetActive(true);
+            Debug.Log("Track + "  + checkTriggerPosition);
         }
 
         /*
