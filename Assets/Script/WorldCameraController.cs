@@ -61,24 +61,21 @@ public class WorldCameraController : MonoBehaviour
             {
                 WorldText1.SetActive(true);
                 WorldText2.SetActive(false);
-                Debug.Log("Track + "  + checkTriggerPosition);
             } else if (checkTriggerPosition == 1f)
             {
                 WorldText1.SetActive(false);
                 WorldText2.SetActive(true);
                 WorldText3.SetActive(false);
-                Debug.Log("Track + "  + checkTriggerPosition);
+                //Debug.Log("Track + "  + checkTriggerPosition);
             } else if (checkTriggerPosition == 3f)
             {
                 WorldText2.SetActive(false);
                 WorldText3.SetActive(true);
                 WorldText4.SetActive(false);
-                Debug.Log("Track + "  + checkTriggerPosition);
             } else if (checkTriggerPosition == 5f)
             {
                 WorldText3.SetActive(false);
                 WorldText4.SetActive(true);
-                Debug.Log("Track + " + checkTriggerPosition);
             } 
         }
 
@@ -88,41 +85,35 @@ public class WorldCameraController : MonoBehaviour
             {
                 WorldText5.SetActive(true);
                 WorldText6.SetActive(false);
-                Debug.Log("Track + "  + checkTriggerPosition);
             }
             else if (checkTriggerPosition == 2f)
             {
                 WorldText5.SetActive(false);
                 WorldText6.SetActive(true);
                 WorldText7.SetActive(false);
-                Debug.Log("Track + "  + checkTriggerPosition);
             }
             else if (checkTriggerPosition == 4f)
             {
                 WorldText6.SetActive(false);
                 WorldText7.SetActive(true);
                 WorldText8.SetActive(false);
-                Debug.Log("Track + "  + checkTriggerPosition);
             }
             else if (checkTriggerPosition == 6f)
             {
                 WorldText7.SetActive(false);
                 WorldText8.SetActive(true);
                 WorldText9.SetActive(false);
-                Debug.Log("Track + "  + checkTriggerPosition);
             }
             else if (checkTriggerPosition == 8f)
             {
                 WorldText8.SetActive(false);
                 WorldText9.SetActive(true);
                 WorldText10.SetActive(false);
-                Debug.Log("Track + "  + checkTriggerPosition);
             }
             else if (checkTriggerPosition == 10f)
             {
                 WorldText9.SetActive(false);
                 WorldText10.SetActive(true);
-                Debug.Log("Track + "  + checkTriggerPosition);
             }
         }
         
