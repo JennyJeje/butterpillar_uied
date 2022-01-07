@@ -12,7 +12,7 @@ public class ChangeText : MonoBehaviour
     public TMP_Text title;
     public TMP_Text desc;
     public GameObject dialogBox;
-    public bool isDialogBoxActive = true;
+    public bool isDialogBoxActive;
     public Button btn;
     public TMP_Text btnName;
     
@@ -89,18 +89,8 @@ public class Caterpillar
         return title;
     }
     
-    public void setTitle(string t){
-        title = t;
-    }
-
     public string getDesc()
     {
         return desc;
     }
-
-    public void setDesc(string d)
-    {
-        desc = d;
-    }
-    
 }

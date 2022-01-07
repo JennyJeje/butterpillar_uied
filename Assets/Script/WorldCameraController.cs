@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class WorldCameraController : MonoBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera cam;
-    [SerializeField] private float speed = 2f;
+    [SerializeField] private float speed = 0.05f;
 
     CinemachineTrackedDolly trackedDolly;
     private float position;
@@ -36,7 +36,7 @@ public class WorldCameraController : MonoBehaviour
         // Dolly Cam Movement
         horizontal = Input.GetAxisRaw("Horizontal");
         position = trackedDolly.m_PathPosition;
-        position += horizontal * speed * Time.deltaTime;
+        position += horizontal * Time.deltaTime;
         
         // Get position
         string posToString = position.ToString("R");
