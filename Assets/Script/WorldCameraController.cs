@@ -23,7 +23,9 @@ public class WorldCameraController : MonoBehaviour
     private float horizontal;
     private double checkTriggerPosition;
     
-    public GameObject WorldText1, WorldText2, WorldText3, WorldText4, WorldText5, WorldText6, WorldText7;
+    public GameObject WorldText1, WorldText2, WorldText3, WorldText4, WorldText5,
+        WorldText6, WorldText7, WorldText8, WorldText9, WorldText10;
+    
 
     private void Start()
     {
@@ -88,17 +90,38 @@ public class WorldCameraController : MonoBehaviour
                 WorldText6.SetActive(false);
                 Debug.Log("Track + "  + checkTriggerPosition);
             }
-            else if (checkTriggerPosition == 3f)
+            else if (checkTriggerPosition == 2f)
             {
                 WorldText5.SetActive(false);
                 WorldText6.SetActive(true);
                 WorldText7.SetActive(false);
                 Debug.Log("Track + "  + checkTriggerPosition);
             }
-            else if (checkTriggerPosition == 5f)
+            else if (checkTriggerPosition == 4f)
             {
                 WorldText6.SetActive(false);
                 WorldText7.SetActive(true);
+                WorldText8.SetActive(false);
+                Debug.Log("Track + "  + checkTriggerPosition);
+            }
+            else if (checkTriggerPosition == 6f)
+            {
+                WorldText7.SetActive(false);
+                WorldText8.SetActive(true);
+                WorldText9.SetActive(false);
+                Debug.Log("Track + "  + checkTriggerPosition);
+            }
+            else if (checkTriggerPosition == 8f)
+            {
+                WorldText8.SetActive(false);
+                WorldText9.SetActive(true);
+                WorldText10.SetActive(false);
+                Debug.Log("Track + "  + checkTriggerPosition);
+            }
+            else if (checkTriggerPosition == 10f)
+            {
+                WorldText9.SetActive(false);
+                WorldText10.SetActive(true);
                 Debug.Log("Track + "  + checkTriggerPosition);
             }
         }
