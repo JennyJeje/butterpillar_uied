@@ -7,7 +7,8 @@ public class CollectLeaf : MonoBehaviour
     private Ray ray;
     private RaycastHit hit;
 
-    public GameObject caterpillar; 
+    public GameObject caterpillar;
+    private float number;
     
     void Update () 
     {
@@ -17,13 +18,14 @@ public class CollectLeaf : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0) && hit.collider.CompareTag("Leaf"))
             {
+                number = 0.4f;
                 print(hit.collider.name);
                 Destroy(hit.transform.gameObject);
-                caterpillar.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
+                caterpillar.transform.localScale += new Vector3(number, number, number);
             }
         }
 
-        if (caterpillar.transform.localScale == new Vector3(0.13f, 0.13f, 0.13f))
+        if (caterpillar.transform.localScale == new Vector3(7, 7, 7))
         {
             print("Fat enough for me.");
         }
