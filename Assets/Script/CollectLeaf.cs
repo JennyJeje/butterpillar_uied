@@ -10,6 +10,8 @@ public class CollectLeaf : MonoBehaviour
     public GameObject caterpillar;
     private float number;
     
+    public GameObject WorldText10, WorldText11; 
+    
     void Update () 
     {
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -28,6 +30,8 @@ public class CollectLeaf : MonoBehaviour
         if (caterpillar.transform.localScale == new Vector3(7, 7, 7))
         {
             print("Fat enough for me.");
+            WorldText10.SetActive(false);
+            WorldText11.SetActive(true);
         }
     }
 }
