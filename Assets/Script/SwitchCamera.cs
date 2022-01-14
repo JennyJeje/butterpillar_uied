@@ -10,12 +10,15 @@ public class SwitchCamera : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera dollyCam;
     [SerializeField] private CinemachineVirtualCamera dollyCam2;
     [SerializeField] private CinemachineFreeLook zoomCam;
+    [SerializeField] private CinemachineVirtualCamera cam3;
+
 
     public GameObject butterpillarCanvas; 
     private void OnEnable()
     {
         CameraSwitcher.Register(dollyCam2);
         CameraSwitcher.Register(dollyCam);
+        CameraSwitcher.Register(cam3);
         CameraSwitcher.RegisterTwo(zoomCam);
 
         CameraSwitcher.SwitchCamera(dollyCam);
@@ -25,36 +28,7 @@ public class SwitchCamera : MonoBehaviour
     {
         CameraSwitcher.Unregister(dollyCam2);
         CameraSwitcher.Unregister(dollyCam);
-    }
-
-    private void Update()
-    {
-        
-        /*
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            butterpillarCanvas.SetActive(false);
-
-            if (CameraSwitcher.isActiveCamera(dollyCam2))
-            {
-                CameraSwitcher.SwitchCamera(dollyCam);
-            } 
-            else if (CameraSwitcher.isActiveCamera(dollyCam))
-            {
-                CameraSwitcher.SwitchCamera(dollyCam2);
-            }
-        }
-        
-        // For testing
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            butterpillarCanvas.SetActive(true);
-
-            dollyCam2.Priority = 0;
-            dollyCam.Priority = 0;
-            zoomCam.Priority = 9;
-        }
-        */
+        CameraSwitcher.Unregister(cam3);
     }
     
     public void SwitchToZoom()
@@ -63,6 +37,7 @@ public class SwitchCamera : MonoBehaviour
 
         dollyCam2.Priority = 0;
         dollyCam.Priority = 0;
+        cam3.Priority = 0;
         zoomCam.Priority = 9;
     }
 
@@ -74,6 +49,17 @@ public class SwitchCamera : MonoBehaviour
             CameraSwitcher.SwitchCamera(dollyCam2);
         }
     }
+
+    public void SwitchToCam3()
+    {
+        if (CameraSwitcher.isActiveCamera(dollyCam2))
+        {
+            CameraSwitcher.SwitchCamera(cam3);
+        }
+        
+    }
+    
+    
 }
 
 

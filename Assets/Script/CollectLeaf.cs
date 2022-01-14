@@ -11,7 +11,8 @@ public class CollectLeaf : MonoBehaviour
     public GameObject caterpillar;
     public GameObject TextGameObject;
     
-    public GameObject currentFrame;
+    public GameObject BlackScreen;
+    public GameObject BlackScreen2;
     public GameObject WorldText11;
     public GameObject WorldText14;
     
@@ -51,17 +52,30 @@ public class CollectLeaf : MonoBehaviour
         {
             Destroy(caterpillar, 2f);
             WorldText14.SetActive(false);
+            StartCoroutine(ShowBreakText());
         }
         
     }
     
     IEnumerator ShowAndHide()
     {
-        currentFrame.SetActive(true);
+        BlackScreen.SetActive(true);
         yield return new WaitForSeconds(3);
-        currentFrame.SetActive(false);
-        yield return new WaitForSeconds(2);
+        BlackScreen.SetActive(false);
+        yield return new WaitForSeconds(3);
         WorldText11.SetActive(true);
+    }
+
+    IEnumerator ShowBreakText()
+    {
+        yield return new WaitForSeconds(3);
+        BlackScreen2.SetActive(true);
+        yield return new WaitForSeconds(3);
+
+        if (ps.isPlaying)
+        {
+            //ps.Stop();
+        }
     }
     
     
