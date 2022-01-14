@@ -1,0 +1,2 @@
+butterfly_Albedo.tga filter=lfs diff=lfs merge=lfs -text
+butterfly filter=lfs diff=lfs merge=lfs -text
