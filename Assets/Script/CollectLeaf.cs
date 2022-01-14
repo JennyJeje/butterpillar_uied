@@ -13,7 +13,8 @@ public class CollectLeaf : MonoBehaviour
     
     public GameObject currentFrame;
     public GameObject WorldText11;
-
+    public GameObject WorldText14;
+    
     public ParticleSystem ps;
 
 
@@ -40,20 +41,29 @@ public class CollectLeaf : MonoBehaviour
         if (!ps.isPlaying && caterpillar.transform.localScale == new Vector3(0.09f, 0.09f, 0.09f))
         {
             Destroy(TextGameObject);
-            StartCoroutine(ShowAndHide(3.5f));
+            StartCoroutine(ShowAndHide());
             caterpillar.transform.position = new Vector3(275.993f, 36f, 246.5f);
             caterpillar.transform.rotation = Quaternion.Euler(-90.4f,73.961f,49.9f);
             ps.Play();
         }
+
+        if (WorldText14.activeSelf)
+        {
+            Destroy(caterpillar, 2f);
+            WorldText14.SetActive(false);
+        }
+        
     }
     
-    IEnumerator ShowAndHide(float delay)
+    IEnumerator ShowAndHide()
     {
         currentFrame.SetActive(true);
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(3);
         currentFrame.SetActive(false);
+        yield return new WaitForSeconds(2);
         WorldText11.SetActive(true);
     }
-
+    
+    
     
 }
