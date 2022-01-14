@@ -10,14 +10,17 @@ public class CollectLeaf : MonoBehaviour
 
     public GameObject caterpillar;
     public GameObject TextGameObject;
+    
+    public GameObject currentFrame;
+    public GameObject WorldText11;
 
     public ParticleSystem ps;
 
 
-    private void Start()
+    void Start()
     {
-       // ps.GetComponent<ParticleSystem>();
-       // ps.Stop();
+       ps.GetComponent<ParticleSystem>();
+       ps.Stop();
     }
 
     void Update () 
@@ -34,10 +37,23 @@ public class CollectLeaf : MonoBehaviour
             }
         }
 
-        if (caterpillar.transform.localScale == new Vector3(0.09f, 0.09f, 0.09f))
+        if (!ps.isPlaying && caterpillar.transform.localScale == new Vector3(0.09f, 0.09f, 0.09f))
         {
             Destroy(TextGameObject);
+            StartCoroutine(ShowAndHide(3.5f));
+            caterpillar.transform.position = new Vector3(275.993f, 36f, 246.5f);
+            caterpillar.transform.rotation = Quaternion.Euler(-90.4f,73.961f,49.9f);
             ps.Play();
         }
     }
+    
+    IEnumerator ShowAndHide(float delay)
+    {
+        currentFrame.SetActive(true);
+        yield return new WaitForSeconds(delay);
+        currentFrame.SetActive(false);
+        WorldText11.SetActive(true);
+    }
+
+    
 }
