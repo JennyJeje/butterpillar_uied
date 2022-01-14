@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +8,18 @@ public class CollectLeaf : MonoBehaviour
     private Ray ray;
     private RaycastHit hit;
 
-    public GameObject caterpillar; 
-    
+    public GameObject caterpillar;
+    public GameObject TextGameObject;
+
+    public ParticleSystem ps;
+
+
+    private void Start()
+    {
+       // ps.GetComponent<ParticleSystem>();
+       // ps.Stop();
+    }
+
     void Update () 
     {
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -23,9 +34,10 @@ public class CollectLeaf : MonoBehaviour
             }
         }
 
-        if (caterpillar.transform.localScale == new Vector3(0.13f, 0.13f, 0.13f))
+        if (caterpillar.transform.localScale == new Vector3(0.09f, 0.09f, 0.09f))
         {
-            print("Fat enough for me.");
+            Destroy(TextGameObject);
+            ps.Play();
         }
     }
 }
