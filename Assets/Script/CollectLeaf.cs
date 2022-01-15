@@ -12,6 +12,7 @@ public class CollectLeaf : MonoBehaviour
 
     public GameObject caterpillar;
     public GameObject TextGameObject;
+    public GameObject CanvasObject;
     
     public GameObject BlackScreen;
     public GameObject BlackScreen2;
@@ -44,6 +45,7 @@ public class CollectLeaf : MonoBehaviour
         if (!ps.isPlaying && caterpillar.transform.localScale == new Vector3(0.09f, 0.09f, 0.09f))
         {
             Destroy(TextGameObject);
+            Destroy(CanvasObject);
             StartCoroutine(ShowAndHide());
             caterpillar.transform.position = new Vector3(275.993f, 36f, 246.5f);
             caterpillar.transform.rotation = Quaternion.Euler(-90.4f,73.961f,49.9f);
