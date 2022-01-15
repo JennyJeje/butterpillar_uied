@@ -1,7 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,11 +15,9 @@ public class CollectLeaf : MonoBehaviour
     public GameObject BlackScreen;
     public GameObject BlackScreen2;
     public GameObject WorldText11;
-    public GameObject WorldText14;
     
     public ParticleSystem ps;
-
-
+    
     void Start()
     {
        ps.GetComponent<ParticleSystem>();
