@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CollectLeaf : MonoBehaviour
 {
@@ -47,14 +49,11 @@ public class CollectLeaf : MonoBehaviour
             caterpillar.transform.rotation = Quaternion.Euler(-90.4f,73.961f,49.9f);
             ps.Play();
         }
+    }
 
-        if (WorldText14.activeSelf)
-        {
-            Destroy(caterpillar, 2f);
-            WorldText14.SetActive(false);
-            StartCoroutine(ShowBreakText());
-        }
-        
+    public void MoveToFinalScene()
+    {
+        StartCoroutine(ShowBreakText());
     }
     
     IEnumerator ShowAndHide()
@@ -69,13 +68,11 @@ public class CollectLeaf : MonoBehaviour
     IEnumerator ShowBreakText()
     {
         yield return new WaitForSeconds(3);
-        BlackScreen2.SetActive(true);
+        Destroy(caterpillar);
         yield return new WaitForSeconds(3);
-
-        if (ps.isPlaying)
-        {
-            //ps.Stop();
-        }
+        BlackScreen2.SetActive(true);
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
     
     
