@@ -41,16 +41,26 @@ public class WorldCameraController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Dolly Cam Movement
-        horizontal = Input.GetAxisRaw("Horizontal");
-        position = trackedDolly.m_PathPosition;
-        position += horizontal * Time.deltaTime;
+        // Dolly Cam Movement mit Pfeiltasten
+        horizontal = Input.GetAxisRaw("Horizontal"); 
+        horizontal = Input.GetAxisRaw("Horizontal"); 
+        position += horizontal * Time.deltaTime; 
+
+        // Dolly Cam Movement mit Mouse Scrollwheel
+        if (Input.GetAxisRaw("Mouse ScrollWheel") > 0) // Forward
+        {
+            trackedDolly.m_PathPosition += 3f * Time.deltaTime;
+        }
+        else if (Input.GetAxisRaw("Mouse ScrollWheel") < 0) // Backward
+        {
+            trackedDolly.m_PathPosition -= 3f * Time.deltaTime;
+        }
         
         // Get position
+        position = trackedDolly.m_PathPosition;
         string posToString = position.ToString("R");
         double posToDouble = Double.Parse(posToString);
         checkTriggerPosition = Math.Round(posToDouble);
-        
         trackedDolly.m_PathPosition = position;
         position = Mathf.Clamp(position, minPos, maxPos);
 
@@ -61,13 +71,13 @@ public class WorldCameraController : MonoBehaviour
             {
                 WorldText1.SetActive(true);
                 WorldText2.SetActive(false);
-            } else if (checkTriggerPosition == 1f)
+            } else if (checkTriggerPosition == 1f || checkTriggerPosition == 2f)
             {
                 WorldText1.SetActive(false);
                 WorldText2.SetActive(true);
                 WorldText3.SetActive(false);
                 //Debug.Log("Track + "  + checkTriggerPosition);
-            } else if (checkTriggerPosition == 3f)
+            } else if (checkTriggerPosition == 3f || checkTriggerPosition == 4f)
             {
                 WorldText2.SetActive(false);
                 WorldText3.SetActive(true);
@@ -81,30 +91,30 @@ public class WorldCameraController : MonoBehaviour
 
         if (isCam2)
         {
-            if (checkTriggerPosition == 0f)
+            if (checkTriggerPosition == 0f || checkTriggerPosition == 1f)
             {
                 WorldText5.SetActive(true);
                 WorldText6.SetActive(false);
             }
-            else if (checkTriggerPosition == 2f)
+            else if (checkTriggerPosition == 2f || checkTriggerPosition == 3f)
             {
                 WorldText5.SetActive(false);
                 WorldText6.SetActive(true);
                 WorldText7.SetActive(false);
             }
-            else if (checkTriggerPosition == 4f)
+            else if (checkTriggerPosition == 4f || checkTriggerPosition == 5f)
             {
                 WorldText6.SetActive(false);
                 WorldText7.SetActive(true);
                 WorldText8.SetActive(false);
             }
-            else if (checkTriggerPosition == 6f)
+            else if (checkTriggerPosition == 6f || checkTriggerPosition == 7f)
             {
                 WorldText7.SetActive(false);
                 WorldText8.SetActive(true);
                 WorldText9.SetActive(false);
             }
-            else if (checkTriggerPosition == 8f)
+            else if (checkTriggerPosition == 8f || checkTriggerPosition == 9f)
             {
                 WorldText8.SetActive(false);
                 WorldText9.SetActive(true);
@@ -116,13 +126,8 @@ public class WorldCameraController : MonoBehaviour
                 WorldText10.SetActive(true);
             }
         }
-        
     }
-    public void DeleteText()
-    {
-        WorldText4.SetActive(false);
-    }
-
+    
     public void ChangeToCam2()
     {
         isCam = false;
@@ -136,13 +141,8 @@ public class WorldCameraController : MonoBehaviour
         trackedDolly.m_PathPosition = 0;
     }
 
+    public void FixCameraPosition(int position)
+    {
+        trackedDolly.m_PathPosition = position;
+    }
 }
-
-
-
-
-
-
-
-
-// https://www.youtube.com/watch?v=g8VpOuo5tns
