@@ -13,6 +13,7 @@ public class ChangeText : MonoBehaviour
     public bool isDialogBoxActive;
     public Button btn;
     public TMP_Text btnName;
+    public GameObject CaterpillarBodyText;
     
     private List<Caterpillar> caterpillar = new List<Caterpillar>();
     private int count;
@@ -42,12 +43,14 @@ public class ChangeText : MonoBehaviour
         if (isDialogBoxActive)
         {
             dialogBox.SetActive(false);
-            isDialogBoxActive = false;
+            CaterpillarBodyText.SetActive(false);
+            isDialogBoxActive = false; ;
             btnName.text = "Info einblenden";
         } 
         else
         {
             dialogBox.SetActive(true);
+            CaterpillarBodyText.SetActive(true);
             isDialogBoxActive = true;
             btnName.text = "Info ausblenden";
         }
