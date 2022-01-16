@@ -43,8 +43,8 @@ public class CollectLeaf : MonoBehaviour
             Destroy(TextGameObject);
             Destroy(CanvasObject);
             StartCoroutine(ShowAndHide());
-            caterpillar.transform.position = new Vector3(275.993f, 36f, 246.5f);
-            caterpillar.transform.rotation = Quaternion.Euler(-90.4f,73.961f,49.9f);
+            caterpillar.transform.position = new Vector3(275.993f, 36.2f, 246.5f);
+            caterpillar.transform.rotation = Quaternion.Euler(0f,190.46f,-73.641f);
             ps.Play();
         }
     }
