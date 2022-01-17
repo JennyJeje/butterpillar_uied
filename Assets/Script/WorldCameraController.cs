@@ -23,7 +23,7 @@ public class WorldCameraController : MonoBehaviour
     private float horizontal;
     private double checkTriggerPosition;
     
-    public GameObject WorldText1, WorldText2, WorldText3, WorldText4, WorldText5,
+    public GameObject WorldText1, WorldText2, WorldText3, WorldText4, WorldText45, WorldText5,
         WorldText6, WorldText7, WorldText8, WorldText9, WorldText10;
     
 
@@ -77,15 +77,21 @@ public class WorldCameraController : MonoBehaviour
                 WorldText2.SetActive(true);
                 WorldText3.SetActive(false);
                 //Debug.Log("Track + "  + checkTriggerPosition);
-            } else if (checkTriggerPosition == 3f || checkTriggerPosition == 4f)
+            } else if (checkTriggerPosition == 3f)
             {
                 WorldText2.SetActive(false);
                 WorldText3.SetActive(true);
                 WorldText4.SetActive(false);
-            } else if (checkTriggerPosition == 5f)
+            } else if (checkTriggerPosition == 4f)
             {
                 WorldText3.SetActive(false);
                 WorldText4.SetActive(true);
+            } else if (checkTriggerPosition == 5f)
+            {
+                WorldText45.SetActive(false);
+            } else if (checkTriggerPosition == 6f)
+            {
+                WorldText45.SetActive(true);
             } 
         }
 

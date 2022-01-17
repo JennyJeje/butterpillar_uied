@@ -1,13 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 
+[RequireComponent(typeof(Transform))]
 public class LookAtText : MonoBehaviour
 {
-    public GameObject cam;
-    void Update()
+    private Camera mainCamera;
+
+    private void Awake()
     {
-        transform.LookAt(cam.transform);
+        mainCamera = Camera.main;
+    }
+
+    void FixedUpdate()
+    {
+        transform.LookAt(mainCamera.transform);
     }
 }
