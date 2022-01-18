@@ -130,6 +130,7 @@ public class WorldCameraController : MonoBehaviour
             }
             else if (checkTriggerPosition == 11f)
             {
+                WorldText9.SetActive(false);
                 WorldText105.SetActive(false);
                 WorldText10.SetActive(true);
             }

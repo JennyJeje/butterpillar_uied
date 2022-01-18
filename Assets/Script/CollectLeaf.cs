@@ -18,10 +18,14 @@ public class CollectLeaf : MonoBehaviour
     
     public ParticleSystem ps;
     
-    void Start()
+    void Awake()
     {
        ps.GetComponent<ParticleSystem>();
-       ps.Stop();
+
+       if (ps.isPlaying)
+       {
+           ps.Stop();
+       }
     }
 
     void Update () 
